@@ -13,7 +13,7 @@ public class SLList {
     private IntNode sentinel;
     private int size;
 
-    /** Creates an empty SLList. **/
+    /** Creates an empty SLList. */
     public SLList(){
         sentinel = new IntNode(0, null);
         size = 0;
@@ -25,13 +25,13 @@ public class SLList {
         size = 1;
     }
 
-    /** Add an item to the front of the list. **/
+    /** Add an item to the front of the list. */
     public void addFirst( int itm) {
         sentinel.next = new IntNode(itm, sentinel.next);
         size++;
     }
 
-    /** Add an item to the end of the list iteratively. **/
+    /** Add an item to the end of the list iteratively. */
     public void addLast( int itm) {
         size++;
 
@@ -43,11 +43,11 @@ public class SLList {
         p.next = new IntNode(itm, null);
     }
 
-    /** Get the number of items in the list immediately. **/
+    /** Get the number of items in the list immediately. */
     public int size() {
         return size;
     }
-    /** Return the first item of the list. **/
+    /** Return the first item of the list. */
     public int getFirst() {
         return sentinel.next.item;
     }

@@ -24,7 +24,7 @@ public class GDLList<T> {
     private Node sentinel;
     private int size;
 
-    /** Create an empty list.**/
+    /** Create an empty list.*/
     public GDLList() {
         sentinel = new Node(null, null);
         sentinel.prev = sentinel;
@@ -39,7 +39,7 @@ public class GDLList<T> {
         size = 1;
     }
 
-    /** Add an item to the front of the list. **/
+    /** Add an item to the front of the list. */
     public void addFirst(T x) {
         Node new_node = new Node(x, sentinel, sentinel.next);
         sentinel.next.prev = new_node;
@@ -47,7 +47,7 @@ public class GDLList<T> {
         size++;
     }
 
-    /** Add an item to the last of the list. **/
+    /** Add an item to the last of the list. */
     public void addLast(T x) {
         Node new_node = new Node(x, sentinel.prev, sentinel);
         sentinel.prev.next = new_node;
@@ -55,12 +55,12 @@ public class GDLList<T> {
         size++;
     }
 
-    /** Get the number of items. **/
+    /** Get the number of items. */
     public int size() {
         return size;
     }
 
-    /** Get the first item of the list. **/
+    /** Get the first item of the list. */
     public T getFirst() {
         if (size < 1) {
             throw new RuntimeException("The list is an empty list.");
@@ -68,7 +68,7 @@ public class GDLList<T> {
         return sentinel.next.item;
     }
 
-    /** Get the last item of the list. **/
+    /** Get the last item of the list. */
     public T getLast() {
         if (size < 1) {
             throw new RuntimeException("The list is an empty list.");
