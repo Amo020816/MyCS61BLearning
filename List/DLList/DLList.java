@@ -1,11 +1,11 @@
-public class GDLList<T> {
+public class DLList<Item> {
     private class Node {
-        public T item;
+        public Item data;
         public Node prev;
         public Node next;
 
-        public Node(T itm, Node p, Node n) {
-            item = itm;
+        public Node(Item itm, Node p, Node n) {
+            data = itm;
             prev = p;
             next = n;
         }
@@ -25,14 +25,14 @@ public class GDLList<T> {
     private int size;
 
     /** Create an empty list.*/
-    public GDLList() {
+    public DLList() {
         sentinel = new Node(null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
-    public GDLList(T x) {
+    public DLList(Item x) {
         sentinel = new Node(null, null);
         sentinel.next = new Node(x, sentinel, sentinel);
         sentinel.prev = sentinel.next;
@@ -40,7 +40,7 @@ public class GDLList<T> {
     }
 
     /** Add an item to the front of the list. */
-    public void addFirst(T x) {
+    public void addFirst(Item x) {
         Node new_node = new Node(x, sentinel, sentinel.next);
         sentinel.next.prev = new_node;
         sentinel.next = new_node;
@@ -48,7 +48,7 @@ public class GDLList<T> {
     }
 
     /** Add an item to the last of the list. */
-    public void addLast(T x) {
+    public void addLast(Item x) {
         Node new_node = new Node(x, sentinel.prev, sentinel);
         sentinel.prev.next = new_node;
         sentinel.prev = new_node;
@@ -61,23 +61,23 @@ public class GDLList<T> {
     }
 
     /** Get the first item of the list. */
-    public T getFirst() {
+    public Item getFirst() {
         if (size < 1) {
             throw new RuntimeException("The list is an empty list.");
         }
-        return sentinel.next.item;
+        return sentinel.next.data;
     }
 
     /** Get the last item of the list. */
-    public T getLast() {
+    public Item getLast() {
         if (size < 1) {
             throw new RuntimeException("The list is an empty list.");
         }
-        return sentinel.prev.item;
+        return sentinel.prev.data;
     }
 
     public static void main(String[] args) {
-        GDLList<Integer> lst = new GDLList<>();
+        DLList<Integer> lst = new DLList<>();
         lst.addFirst(10);
         lst.addLast(50);
         System.out.println(lst.getFirst());

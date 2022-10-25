@@ -4,26 +4,26 @@
  *  @author Josh Hug
  */
 
-public class AList {
+public class AList <Item> {
 
-    private int []items;
+    private Item []items;
     private int size;
 
     /** Creates an empty list. */
     public AList() {
-        items = new int[20];
+        items = (Item[]) new Object[20];
         size = 0;
     }
 
     /** Resize the underlying array to the target capacity. */
     private void resize(int capacity) {
-        int []new_items = new int[capacity];
+        Item []new_items =(Item[]) new Object[capacity];
         System.arraycopy(items, 0, new_items, 0, size);
         items = new_items;
     }
 
     /** Inserts X into the back of the list. */
-    public void addLast(int x) {
+    public void addLast(Item x) {
 
         if (items.length  == size) {
             resize(2 * items.length + 1);
@@ -33,13 +33,13 @@ public class AList {
     }
 
     /** Returns the item from the back of the list. */
-    public int getLast() {
+    public Item getLast() {
         if (size == 0)
-            return 0;
+            return null;
         return items[size - 1];
     }
     /** Gets the ith item in the list (0 is the front). */
-    public int get(int i) {
+    public Item get(int i) {
         if (i >= size) {
             throw new RuntimeException("invalid access to AList");
         }
@@ -54,8 +54,9 @@ public class AList {
 
     /** Deletes item from back of the list and
      * returns deleted item. */
-    public int removeLast() {
-        int x = getLast();
+    public Item removeLast() {
+        Item x = getLast();
+        items[size - 1] = null;
         size--;
         return x;
     }
