@@ -15,15 +15,19 @@ public class AList {
         size = 0;
     }
 
+    /** Resize the underlying array to the target capacity. */
+    private void resize(int capacity) {
+        int []new_items = new int[capacity];
+        System.arraycopy(items, 0, new_items, 0, size);
+        items = new_items;
+    }
+
     /** Inserts X into the back of the list. */
     public void addLast(int x) {
 
         if (items.length  == size) {
-            int []new_items = new int[items.length * 2 + 1];
-            System.arraycopy(items, 0, new_items, 0, size);
-            items = new_items;
+            resize(2 * items.length + 1);
         }
-
         items[size] = x;
         size++;
     }
