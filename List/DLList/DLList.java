@@ -1,4 +1,4 @@
-public class DLList<Item> {
+public class DLList<Item> implements ListCS61B<Item>{
     private class Node {
         public Item data;
         public Node prev;
@@ -48,6 +48,7 @@ public class DLList<Item> {
     }
 
     /** Add an item to the last of the list. */
+    @Override
     public void addLast(Item x) {
         Node new_node = new Node(x, sentinel.prev, sentinel);
         sentinel.prev.next = new_node;
@@ -56,6 +57,7 @@ public class DLList<Item> {
     }
 
     /** Get the number of items. */
+    @Override
     public int size() {
         return size;
     }
@@ -69,6 +71,7 @@ public class DLList<Item> {
     }
 
     /** Get the last item of the list. */
+    @Override
     public Item getLast() {
         if (size < 1) {
             throw new RuntimeException("The list is an empty list.");
@@ -76,11 +79,47 @@ public class DLList<Item> {
         return sentinel.prev.data;
     }
 
-    public static void main(String[] args) {
-        DLList<Integer> lst = new DLList<>();
-        lst.addFirst(10);
-        lst.addLast(50);
-        System.out.println(lst.getFirst());
-        System.out.println(lst.getLast());
+    /** Remove the last item of the list */
+    @Override
+    public Item removeLast() {
+        if (size < 1) {
+            throw new RuntimeException("Can not remove an item from an empty list.");
+        }
+        Item x = getLast();
+        Node last_node = sentinel.prev;
+        sentinel.prev.data = null;
+        last_node.prev.next = sentinel;
+        sentinel.prev = last_node.prev;
+        size--;
+        return x;
+    }
+
+    /** Get the i-th item of the list. */
+    @Override
+    public Item get(int k) {
+        Node iterator = get(k, sentinel.next);
+        if (iterator == null)
+            throw new RuntimeException("invalid access to DLList");
+        return iterator.data;
+    }
+
+    /** A helper method of get */
+    private Node get(int k, Node itr) {
+        if (itr == null) {
+            return null;
+        }
+        if (k == 0)
+            return itr;
+        else
+            return get(k - 1, itr.next);
+    }
+
+    /** Prints out the entire DLList. */
+    @Override
+    public void print() {
+        for (Node itr = sentinel.next; itr != sentinel; itr = itr.next) {
+          System.out.print(itr.data + " ");
+        }
+        System.out.println();
     }
 }

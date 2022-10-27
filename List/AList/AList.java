@@ -4,7 +4,7 @@
  *  @author Josh Hug
  */
 
-public class AList <Item> {
+public class AList <Item> implements ListCS61B<Item> {
 
     private Item []items;
     private int size;
@@ -23,6 +23,7 @@ public class AList <Item> {
     }
 
     /** Inserts X into the back of the list. */
+    @Override
     public void addLast(Item x) {
 
         if (items.length  == size) {
@@ -33,12 +34,14 @@ public class AList <Item> {
     }
 
     /** Returns the item from the back of the list. */
+    @Override
     public Item getLast() {
         if (size == 0)
             return null;
         return items[size - 1];
     }
     /** Gets the ith item in the list (0 is the front). */
+    @Override
     public Item get(int i) {
         if (i >= size) {
             throw new RuntimeException("invalid access to AList");
@@ -48,12 +51,14 @@ public class AList <Item> {
     }
 
     /** Returns the number of items in the list. */
+    @Override
     public int size() {
         return size;
     }
 
     /** Deletes item from back of the list and
      * returns deleted item. */
+    @Override
     public Item removeLast() {
         Item x = getLast();
         items[size - 1] = null;
